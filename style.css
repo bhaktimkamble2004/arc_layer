@@ -253,7 +253,7 @@ iframe {
     inset: -3%;
     z-index: -4;
 
-    background-image: url("hero-background.jpeg");
+    background-image: url("hero-background.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -285,17 +285,7 @@ iframe {
 }
 
 .hero::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 120px;
-    z-index: -2;
-
-    background: linear-gradient(
-        180deg,
-        rgba(246, 251, 254, 0),
-        rgba(246, 251, 254, 0.96)
-    );
+  display:none;
 }
 
 .hero-inner {
@@ -541,13 +531,12 @@ iframe {
 .p10 { top: 52%; left: 79%; animation-delay: -4.8s; animation-duration: 13.5s; }
 
 @keyframes heroPan {
-    0% {
-        transform: scale(1.04) translate3d(0, 0, 0);
-        background-position: 50% 50%;
+      0% {
+        transform: scale(1);
     }
+
     100% {
-        transform: scale(1.10) translate3d(-1.4%, -0.8%, 0);
-        background-position: 56% 48%;
+        transform: scale(1.025);
     }
 }
 
@@ -588,7 +577,7 @@ iframe {
     max-width: 650px;
 
     /* More upward + slightly left */
-    margin: -72px auto 30px 9.5%;
+    margin: 24px auto 0;
 
     padding: 18px 22px;
 
@@ -1497,15 +1486,19 @@ footer strong {
     }
 
     .hero-overlay {
-        background:
-            linear-gradient(
-                90deg,
-                rgba(255,255,255,0.97) 0%,
-                rgba(255,255,255,0.91) 42%,
-                rgba(240,251,255,0.61) 72%,
-                rgba(240,251,255,0.20) 100%
-            ),
-            linear-gradient(180deg, rgba(255,255,255,0.04), rgba(32,126,152,0.14));
+     position: absolute;
+    inset: 0;
+
+    z-index: -3;
+
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.96) 0%,
+        rgba(255, 255, 255, 0.90) 27%,
+        rgba(245, 252, 255, 0.62) 47%,
+        rgba(240, 251, 253, 0.15) 68%,
+        rgba(255, 255, 255, 0) 100%
+    );
     }
 
     .student-details {
@@ -1555,7 +1548,26 @@ footer strong {
         top: 0;
     }
     .hero-background {
-        background-position: 62% center;
+    position: absolute;
+    inset: 0;
+
+    z-index: -4;
+
+    background-image: url("hero-background.jpeg");
+    background-repeat: no-repeat;
+
+    /*
+       Fill full width and stretch vertically downward.
+       115% makes the image taller than the hero.
+    */
+    background-size: 100% 115%;
+
+    /* Keep image attached to the top */
+    background-position: center top;
+
+    animation: heroPan 18s ease-in-out infinite alternate;
+
+    will-change: transform;
     }
 
     .hero-overlay {
@@ -1781,3 +1793,276 @@ footer strong {
         display: none;
     }
 }
+
+/* =========================================================
+   FINAL HERO LAYOUT OVERRIDES
+   Background fills the complete hero, including student card
+========================================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    min-height: 78px;
+    padding: 10px 5%;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: rgba(248, 253, 255, 0.97);
+    border-bottom: 1px solid rgba(118, 174, 202, 0.25);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 6px 18px rgba(33, 83, 110, 0.06);
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.navigation a {
+    color: #17324d;
+    font-weight: 750;
+    font-size: 12px;
+}
+
+.hero {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-height: 760px;
+    overflow: hidden;
+    padding: 0 0 48px;
+    display: block;
+}
+
+/* Full-width background image */
+.hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: -4;
+
+    background-image: url("hero-background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 48%;
+
+    transform: scale(1.01);
+    animation: heroPan 18s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+/* Strong white fade on left, transparent over map on right */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.985) 0%,
+        rgba(255,255,255,0.955) 24%,
+        rgba(255,255,255,0.82) 38%,
+        rgba(255,255,255,0.52) 50%,
+        rgba(255,255,255,0.18) 62%,
+        rgba(255,255,255,0.02) 78%,
+        rgba(255,255,255,0) 100%
+    );
+}
+
+.hero::after {
+    display: none !important;
+}
+
+.hero-inner {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 0 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    top: 0;
+    max-width: 680px;
+    animation: heroContentIn 0.9s ease both;
+}
+
+.eyebrow {
+    margin-top: 0;
+}
+
+.hero h1 {
+    margin: 14px 0 14px;
+    max-width: 720px;
+    color: #17324d;
+    font-size: clamp(52px, 6vw, 82px);
+    line-height: 0.98;
+    letter-spacing: -3px;
+    font-weight: 820;
+    text-shadow: 0 2px 16px rgba(255,255,255,0.85);
+}
+
+.hero-description {
+    max-width: 640px;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    margin-top: 19px;
+}
+
+.technology-tags {
+    margin-top: 14px;
+}
+
+/* Student card now sits on the same background image */
+.student-section {
+    width: 50%;
+    max-width: 680px;
+    margin: 24px 0 0 7.5%;
+    padding: 18px 22px;
+
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(120,180,200,0.34);
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(39,91,119,0.15);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.student-section:hover {
+    transform: translateY(-4px);
+    border-color: rgba(47,159,146,0.30);
+    box-shadow: 0 22px 48px rgba(39,91,119,0.20);
+}
+
+/* Background only zooms gently. It does not slide upward/right. */
+@keyframes heroPan {
+    0% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1.045);
+    }
+}
+
+/* Tablet */
+@media (max-width: 950px) {
+    .hero {
+        min-height: auto;
+        padding-bottom: 40px;
+    }
+
+    .hero-inner {
+        width: 90%;
+        padding-top: 20px;
+    }
+
+    .hero-content {
+        top: 0;
+        max-width: 640px;
+    }
+
+    .hero-background {
+        background-size: cover;
+        background-position: 58% center;
+    }
+
+    .student-section {
+        width: 65%;
+        max-width: 650px;
+        margin: 24px 0 0 6%;
+    }
+
+    .student-details {
+        display: none;
+    }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+    .hero-inner {
+        width: 88%;
+        padding-top: 18px;
+    }
+
+    .hero h1 {
+        font-size: clamp(46px, 12vw, 62px);
+        letter-spacing: -2.5px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-background {
+        background-size: cover;
+        background-position: 66% center;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(
+            90deg,
+            rgba(255,255,255,0.97) 0%,
+            rgba(255,255,255,0.93) 54%,
+            rgba(255,255,255,0.58) 100%
+        );
+    }
+
+    .student-section {
+        width: 88%;
+        max-width: none;
+        margin: 25px auto 0;
+    }
+}
+
+@media (max-width: 520px) {
+    .hero {
+        padding-bottom: 30px;
+    }
+
+    .hero-inner {
+        width: 90%;
+        padding-top: 16px;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+        line-height: 1;
+        letter-spacing: -2px;
+    }
+
+    .hero-background {
+        background-size: cover;
+        background-position: 70% center;
+    }
+
+    .student-section {
+        width: 90%;
+        margin: 22px auto 0;
+        align-items: flex-start;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
+
