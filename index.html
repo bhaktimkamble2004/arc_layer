@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Geospatial Commute Flow Analysis</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <div class="logo-area">
+        <div class="logo-box">GIS</div>
+
+        <div class="logo-text">
+            <h3>GEOSPATIAL BIG DATA</h3>
+            <p>COMMUTE FLOW ANALYSIS</p>
+        </div>
+    </div>
+
+    <nav class="navigation">
+        <a href="#home">Home</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#map">3D Map</a>
+        <a href="#chart">Chart</a>
+        <a href="#interpretation">Interpretation</a>
+        <a href="#variables">Variables</a>
+    </nav>
+
+    <a
+        class="colab-button"
+        href="https://colab.research.google.com/drive/1SFeTDClFkU75VgMx1kIVyh52Oq0CXI2v?usp=sharing"
+        target="_blank"
+    >
+        <span>◉</span>
+        Google Colab ↗
+    </a>
+
+</header>
+
+
+<!-- =========================================================
+     HERO / FRONT PAGE
+========================================================= -->
+
+<section class="hero" id="home">
+
+    <!-- Animated hero background -->
+    <div class="hero-background" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <!-- Moving flow particles -->
+    <div class="flow-particles" aria-hidden="true">
+        <span class="flow-particle p1"></span>
+        <span class="flow-particle p2"></span>
+        <span class="flow-particle p3"></span>
+        <span class="flow-particle p4"></span>
+        <span class="flow-particle p5"></span>
+        <span class="flow-particle p6"></span>
+        <span class="flow-particle p7"></span>
+        <span class="flow-particle p8"></span>
+        <span class="flow-particle p9"></span>
+        <span class="flow-particle p10"></span>
+    </div>
+
+    <div class="hero-inner">
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                GEOSPATIAL BIG DATA ANALYSIS · EXERCISE 05
+            </div>
+
+            <h1>
+                Understanding
+                <span>Movement</span>
+                Through Space
+            </h1>
+
+            <p class="hero-description">
+                An interactive geospatial visualization of
+                <strong>home-to-work commute flows</strong>,
+                combining spatial coordinates, flow magnitude,
+                3D ArcLayer visualization and quantitative analysis.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#map" class="button primary-button">
+                    Explore 3D Map ↓
+                </a>
+
+                <a href="#interpretation" class="button secondary-button">
+                    View Interpretation
+                </a>
+            </div>
+
+            <div class="technology-tags">
+                <span>PYTHON</span>
+                <span>PANDAS</span>
+                <span>PYDECK</span>
+                <span>ARCLAYER</span>
+                <span>PLOTLY</span>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     STUDENT DETAILS
+========================================================= -->
+
+<section class="student-section">
+
+    <div class="student-avatar">
+        BK
+    </div>
+
+    <div class="student-information">
+
+        <span>PROJECT BY</span>
+
+        <h2>Bhakti Kamble</h2>
+
+        <p>
+            MSc Geoinformatics · BVIEER, Pune · Batch 2025–2027
+        </p>
+
+    </div>
+
+    <div class="student-details">
+
+        <div>
+            <span>COURSE</span>
+            <strong>Geospatial Big Data Analysis</strong>
+        </div>
+
+        <div>
+            <span>EXERCISE</span>
+            <strong>05</strong>
+        </div>
+
+        <div>
+            <span>ANALYSIS</span>
+            <strong>Commute Flows</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WORKFLOW
+========================================================= -->
+
+<section class="section" id="workflow">
+
+    <div class="section-heading">
+
+        <div>
+            <span class="section-number">
+                01 · WORKFLOW
+            </span>
+
+            <h2>
+                From Data to Spatial Insight
+            </h2>
+        </div>
+
+        <p>
+            The workflow converts origin–destination commute
+            records into an interactive spatial representation
+            of movement.
+        </p>
+
+    </div>
+
+
+    <div class="workflow-grid">
+
+        <div class="workflow-card">
+
+            <div class="step-number">01</div>
+
+            <h3>Load Dataset</h3>
+
+            <p>
+                The commute dataset is loaded and processed
+                using Python and Pandas.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+            <div class="step-number">02</div>
+
+            <h3>Prepare Data</h3>
+
+            <p>
+                Home and workplace coordinates are prepared
+                for spatial visualization.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+            <div class="step-number">03</div>
+
+            <h3>Create Flows</h3>
+
+            <p>
+                Origin and destination locations are connected
+                to represent commute movement.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+            <div class="step-number">04</div>
+
+            <h3>Visualize</h3>
+
+            <p>
+                PyDeck ArcLayer is used to create the interactive
+                3D commute flow map.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+            <div class="step-number">05</div>
+
+            <h3>Compare</h3>
+
+            <p>
+                The strongest commute flows are ranked using
+                an additional bar chart.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+            <div class="step-number">06</div>
+
+            <h3>Interpret</h3>
+
+            <p>
+                Spatial and quantitative patterns are combined
+                to understand the commute network.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     3D MAP
+========================================================= -->
+
+<section class="section" id="map">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-number">
+                02 · INTERACTIVE MAP
+            </span>
+
+            <h2>
+                3D Commute Flow Map
+            </h2>
+
+        </div>
+
+        <p>
+            Each arc connects a home location with a workplace
+            location. Arc width represents the magnitude of
+            the commute flow.
+        </p>
+
+    </div>
+
+
+    <div class="visual-card">
+
+        <div class="visual-header">
+
+            <div class="visual-title">
+
+                <span class="status-dot"></span>
+
+                <strong>
+                    PYDECK · ARCLAYER
+                </strong>
+
+            </div>
+
+
+            <div class="map-legend">
+
+                <span>
+                    <i class="orange-dot"></i>
+                    Home
+                </span>
+
+                <span>
+                    <i class="green-dot"></i>
+                    Work
+                </span>
+
+                <span>
+                    <i class="flow-gradient"></i>
+                    Commute Flow
+                </span>
+
+            </div>
+
+
+            <a
+                href="arc_layer_map.html"
+                target="_blank"
+                class="open-button"
+            >
+                Open Full Map ↗
+            </a>
+
+        </div>
+
+
+        <!-- IMPORTANT:
+             arc_layer_map.html must be in same folder -->
+
+        <div class="map-container">
+
+            <iframe
+                src="arc_layer_map.html"
+                title="3D Commute Flow Map"
+                loading="lazy"
+            ></iframe>
+
+        </div>
+
+
+        <div class="visual-caption">
+
+            <div>
+
+                <h3>
+                    How to read the map
+                </h3>
+
+                <p>
+                    Orange represents home or origin locations,
+                    green represents work or destination locations,
+                    while wider arcs indicate larger commute
+                    flow magnitude.
+                </p>
+
+            </div>
+
+            <span class="interactive-badge">
+                INTERACTIVE
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BAR CHART
+========================================================= -->
+
+<section class="section" id="chart">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-number">
+                03 · QUANTITATIVE ANALYSIS
+            </span>
+
+            <h2>
+                Top 10 Commute Flows
+            </h2>
+
+        </div>
+
+        <p>
+            The bar chart provides a quantitative comparison
+            of the strongest recorded commute routes.
+        </p>
+
+    </div>
+
+
+    <div class="visual-card">
+
+        <div class="visual-header">
+
+            <div class="visual-title">
+
+                <span class="chart-dot"></span>
+
+                <strong>
+                    PLOTLY · FLOW ANALYSIS
+                </strong>
+
+            </div>
+
+
+            <span class="chart-description">
+                Number of Jobs by Commute Route
+            </span>
+
+
+            <a
+                href="extra_visualization.html"
+                target="_blank"
+                class="open-button"
+            >
+                Open Full Chart ↗
+            </a>
+
+        </div>
+
+
+        <!-- IMPORTANT:
+             extra_visualization.html must be in same folder -->
+
+        <div class="chart-container">
+
+            <iframe
+                src="extra_visualization.html"
+                title="Top 10 Commute Flow Bar Chart"
+                loading="lazy"
+            ></iframe>
+
+        </div>
+
+
+        <div class="visual-caption">
+
+            <div>
+
+                <h3>
+                    Quantitative interpretation
+                </h3>
+
+                <p>
+                    Higher bars indicate larger recorded
+                    commute flows and help identify the routes
+                    contributing the greatest number of jobs.
+                </p>
+
+            </div>
+
+            <span class="chart-badge">
+                TOP 10
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     INTERPRETATION
+========================================================= -->
+
+<section class="section" id="interpretation">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-number">
+                04 · INTERPRETATION
+            </span>
+
+            <h2>
+                What Does the Visualization Tell Us?
+            </h2>
+
+        </div>
+
+        <p>
+            The map and chart together provide spatial and
+            quantitative insight into the commute dataset.
+        </p>
+
+    </div>
+
+
+    <div class="interpretation-grid">
+
+
+        <div class="interpretation-card">
+
+            <div class="interpretation-number">
+                01
+            </div>
+
+            <h3>
+                Origin → Destination
+            </h3>
+
+            <p>
+                Each arc represents a relationship between
+                a home location and a workplace location,
+                converting tabular records into a visible
+                movement network.
+            </p>
+
+        </div>
+
+
+        <div class="interpretation-card">
+
+            <div class="interpretation-number">
+                02
+            </div>
+
+            <h3>
+                Flow Magnitude
+            </h3>
+
+            <p>
+                The S000 variable represents the commute
+                flow or job-count magnitude. Larger values
+                are represented by wider arcs.
+            </p>
+
+        </div>
+
+
+        <div class="interpretation-card">
+
+            <div class="interpretation-number">
+                03
+            </div>
+
+            <h3>
+                Spatial Pattern
+            </h3>
+
+            <p>
+                The 3D visualization provides spatial context
+                and helps identify the distribution and
+                concentration of commute connections.
+            </p>
+
+        </div>
+
+
+        <div class="interpretation-card">
+
+            <div class="interpretation-number">
+                04
+            </div>
+
+            <h3>
+                Quantitative Pattern
+            </h3>
+
+            <p>
+                The Top 10 bar chart ranks the strongest
+                recorded commute flows, making their relative
+                magnitude easier to compare.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- KEY TAKEAWAY -->
+
+    <div class="takeaway">
+
+        <span>
+            KEY TAKEAWAY
+        </span>
+
+        <h3>
+            Spatial movement becomes easier to understand
+            when location and flow magnitude are viewed together.
+        </h3>
+
+        <p>
+            The ArcLayer explains <strong>where movement occurs</strong>,
+            while the bar chart explains <strong>which flows are strongest</strong>.
+            Together, they provide both spatial and quantitative
+            insight into the commute network.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     VARIABLES
+========================================================= -->
+
+<section class="section variables-section" id="variables">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-number">
+                05 · DATA VARIABLES
+            </span>
+
+            <h2>
+                Variables Behind the Map
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="variables-grid">
+
+
+        <div class="variable-card">
+
+            <code>lng_h</code>
+
+            <h3>
+                Home Longitude
+            </h3>
+
+            <p>
+                Longitude coordinate of the home or origin.
+            </p>
+
+        </div>
+
+
+        <div class="variable-card">
+
+            <code>lat_h</code>
+
+            <h3>
+                Home Latitude
+            </h3>
+
+            <p>
+                Latitude coordinate of the home or origin.
+            </p>
+
+        </div>
+
+
+        <div class="variable-card">
+
+            <code>lng_w</code>
+
+            <h3>
+                Work Longitude
+            </h3>
+
+            <p>
+                Longitude coordinate of the workplace or destination.
+            </p>
+
+        </div>
+
+
+        <div class="variable-card">
+
+            <code>lat_w</code>
+
+            <h3>
+                Work Latitude
+            </h3>
+
+            <p>
+                Latitude coordinate of the workplace or destination.
+            </p>
+
+        </div>
+
+
+        <div class="variable-card important-variable">
+
+            <code>S000</code>
+
+            <h3>
+                Flow / Job Count
+            </h3>
+
+            <p>
+                Represents the magnitude of the recorded
+                commute flow.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL SECTION
+========================================================= -->
+
+<section class="final-section">
+
+    <div>
+
+        <span>
+            GEOSPATIAL BIG DATA ANALYSIS
+        </span>
+
+        <h2>
+            Data → Space → Movement → Insight
+        </h2>
+
+        <p>
+            An interactive geospatial story created from
+            origin–destination commute data.
+        </p>
+
+    </div>
+
+
+    <a href="#home" class="button primary-button">
+        Back to Top ↑
+    </a>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div>
+        <strong>
+            Geospatial Commute Flow Dashboard
+        </strong>
+    </div>
+
+    <div>
+        MSc Geoinformatics · BVIEER · Pune
+    </div>
+
+</footer>
+
+
+<button
+    id="backToTop"
+    title="Back to top"
+>
+    ↑
+</button>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
